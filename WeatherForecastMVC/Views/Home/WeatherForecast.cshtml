@@ -1,8 +1,16 @@
 @using WeatherForecastMVC.Models
 @model WeatherForecastModel
+
 @{
     ViewData["Title"] = "Weather Forecast";
 }
+
+@if (Model.Precipitation.ToLowerInvariant().Contains("rain"))
+    {
+        <div class="alert alert-danger">
+            @Model.Precipitation
+        </div>
+    }
 
 <h1>@Html.DisplayFor(model => model.City)</h1>
 

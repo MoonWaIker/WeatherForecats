@@ -22,7 +22,6 @@ namespace WeatherForecastMVC.Services
             // Cleanup
         }
 
-        // TODO write preciptations
         public WeatherForecastModel GetWeatherForecast(string city)
         {
             string locationKey = GetCityKey(city);
@@ -32,15 +31,15 @@ namespace WeatherForecastMVC.Services
             .AddParameter("metric", true);
             RestResponse response = client.Execute(request);
 
-
             if (!response.IsSuccessful)
             {
                 throw new HttpRequestException();
             }
 
-            WeatherForecastModel model = JObject.Parse(response.Content ?? throw new JsonSerializationException())["DailyForecasts"]?[0]?["Temperature"]?
+            WeatherForecastModel model = JObject.Parse(response.Content ?? throw new JsonSerializationException())["DailyForecasts"]?[0]?
             .ToObject<WeatherForecastModel>() ?? throw new JsonSerializationException();
             model.City = city;
+
             return model;
         }
 
