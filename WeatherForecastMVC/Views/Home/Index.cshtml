@@ -3,9 +3,15 @@
 }
 
 <div class="text-center">
+    @if (TempData.ContainsKey("ErrorMessage"))
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
     <h1 class="display-4">Welcome</h1>
     <form>
-        <input class="form-control-sm" placeholder="Type a city"/>
-        <input class="btn btn-primary" type="submit" />
+        <input class="form-control-sm" placeholder="Type a city" name="city" id="city"/>
+        <input class="btn btn-primary" type="submit" asp-controller="Home" asp-action="WeatherForecast" asp-route-city="city"/>
     </form>
 </div>
