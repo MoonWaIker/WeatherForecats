@@ -15,3 +15,13 @@
         <input class="btn btn-primary" type="submit" asp-controller="Home" asp-action="WeatherForecast" asp-route-city="city"/>
     </form>
 </div>
+
+@{
+    string cityValue = Context.Request.Cookies["City"];
+    if (!string.IsNullOrEmpty(cityValue))
+    {
+        <script>
+            document.getElementById("city").value = @Html.Raw(Json.Serialize(cityValue));
+        </script>
+    }
+}

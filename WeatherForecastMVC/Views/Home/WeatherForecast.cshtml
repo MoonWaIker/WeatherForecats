@@ -5,7 +5,7 @@
     ViewData["Title"] = "Weather Forecast";
 }
 
-@if (Model.Precipitation.ToLowerInvariant().Contains("rain"))
+@if (Model.Precipitation.ToLowerInvariant().Contains("rain") && Context.Request.Cookies["VistedCity"] == Model.City)
     {
         <div class="alert alert-danger">
             @Model.Precipitation
